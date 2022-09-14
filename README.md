@@ -1,24 +1,68 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
 
-Things you may want to cover:
+| Column                | Type     | Options     | 
+| --------------------- | -------- | ----------- | 
+| family_name           | string   | null: false | 
+| first_name            | string   | null: false | 
+| family_name_kana      | string   | null: false | 
+| first_name_kana       | string   | null: false | 
+| email                 | string   | null: false | 
+| encrypted_password    | string   | null: false | 
+| company_id            | integer  | null: false | 
+| division_id           | integer  | null: false | 
+| station_id            | integer  |             | 
 
-* Ruby version
+### Association
+- has_many :learning
+- belongs_to :company（アクティブハッシュ）
+- belongs_to :division（アクティブハッシュ）
+- belongs_to :station（アクティブハッシュ）
 
-* System dependencies
+### ActiveHash
+- company
+- division
+- station
 
-* Configuration
 
-* Database creation
+## learningsテーブル
 
-* Database initialization
+| Column      | Type       | Options                        | 
+| ----------- | ---------- | ------------------------------ | 
+| title       | string     | null: false                    | 
+| category_id | integer    | null: false                    | 
+| comment     | text       | null: false                    | 
+| user        | references | foreign_key: true, null: false | 
 
-* How to run the test suite
+### Association
+- belongs_to :user
+- has_many :questions
+- belongs_to :category（アクティブハッシュ）
 
-* Services (job queues, cache servers, search engines, etc.)
+### ActiveHash
+- category
 
-* Deployment instructions
 
-* ...
+## questionsテーブル
+
+| Column         | Type       | Options                        | 
+| -------------- | ---------- | ------------------------------ | 
+| question       | text       | null: false                    | 
+| description    | text       |                                | 
+| learning       | references | foreign_key: true, null: false | 
+
+### Association
+- belongs_to :learning
+- has_many :choices
+
+
+## choicesテーブル
+| Column      | Type       | Options                        | 
+| ----------- | ---------- | ------------------------------ | 
+| content     | string     | null: false                    | 
+| is_answer   | boolean    | null: false, default: false    | 
+| question    | references | foreign_key: true, null: false | 
+
+### Association
+- belongs_to :question
