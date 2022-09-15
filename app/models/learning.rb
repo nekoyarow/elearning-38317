@@ -8,6 +8,6 @@ class Learning < ApplicationRecord
   validates :comment, presence: true
 
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :learning
+  belongs_to :category
 
 end
