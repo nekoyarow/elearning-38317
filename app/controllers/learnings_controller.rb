@@ -13,7 +13,7 @@ class LearningsController < ApplicationController
 
   def create
     @learning = Learning.new(learning_params)
-    if @learning.save!
+    if @learning.save
       redirect_to learnings_path
     else
       render :new
