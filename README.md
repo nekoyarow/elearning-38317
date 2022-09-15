@@ -15,7 +15,7 @@
 | station_id            | integer  |             | 
 
 ### Association
-- has_many :learning
+- has_many :learnings
 - belongs_to :company（アクティブハッシュ）
 - belongs_to :division（アクティブハッシュ）
 - belongs_to :station（アクティブハッシュ）
