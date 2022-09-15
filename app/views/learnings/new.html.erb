@@ -22,29 +22,15 @@
   </div>
 
   <%= f.fields_for :questions do |qu| %>
-    <div class="field">
-      <%= qu.label :question, "問題" %><br />
-      <%= qu.text_field :question %>
-    </div>
-
-    <%= qu.fields_for :choices do |ch| %>
-      <div class="radio_buttons">
-        <%= ch.label :is_answer, "答えを選択", value: true %>
-        <%= ch.radio_button :is_answer, true %>
-      </div>
-
-      <div class="field">
-        <%= ch.label :content, "選択肢" %>
-        <%= ch.text_field :content %>
-      </div>
-
-    <% end %>
-
-    <div class="field">
-      <%= qu.label :description, "説明" %><br />
-      <%= qu.text_field :description %>
-    </div>
-
+    <%= render "question_fields", f: qu %>
   <% end %>
-  <%= f.submit 'send' %>
+
+  <div class="links">
+    <%= link_to_add_association "問題を追加", f, :questions %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'send' %>
+  </div>
+
 <% end %>

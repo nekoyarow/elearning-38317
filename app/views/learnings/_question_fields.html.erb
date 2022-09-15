@@ -1,0 +1,15 @@
+<div class="field">
+  <%= f.label :question, "問題" %><br />
+  <%= f.text_field :question %>
+</div>
+
+<%= f.fields_for :choices do |ch| %>
+  <%= render "choice_fields", f: ch %>
+<% end %>
+
+<div class="field">
+  <%= f.label :description, "説明" %><br />
+  <%= f.text_field :description %>
+</div>
+
+<%= link_to_add_association "選択肢を追加", f, :choices %>

@@ -1,0 +1,11 @@
+<div class="radio_buttons">
+  <%= f.label :is_answer, "答えを選択", value: true %>
+  <%= f.radio_button :is_answer, true %>
+</div>
+
+<div class="field">
+  <%= f.label :content, "選択肢" %>
+  <%= f.text_field :content %>
+</div>
+
+<%= link_to_remove_association "remove grandchild", f %>

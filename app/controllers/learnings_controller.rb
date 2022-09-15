@@ -7,8 +7,8 @@ class LearningsController < ApplicationController
 
   def new
     @learning = Learning.new
-    questions = @learning.questions.build
-    questions.choices.build
+    @questions = @learning.questions.build
+    @choices = @questions.choices.build
   end
 
   def create
@@ -24,8 +24,8 @@ class LearningsController < ApplicationController
 
   def learning_params
     params.require(:learning).permit(:title, :category_id, :comment,
-      questions_attributes: [:question,:description,
-        choices_attributes: [:content, :is_answer]
+      questions_attributes: [:question,:description, :_destroy,
+        choices_attributes: [:content, :is_answer, :_destroy]
       ]
     ).merge(user_id: current_user.id)
   end
