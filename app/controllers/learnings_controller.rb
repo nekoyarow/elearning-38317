@@ -28,7 +28,7 @@ class LearningsController < ApplicationController
 
   def update
     if @learning.update(learning_params)
-      redirect_to learning_path(@learning.id)
+      redirect_to learning_path(@learning.id), notice: "問題を登録しました。"
     else
       render :edit
     end
@@ -42,7 +42,7 @@ class LearningsController < ApplicationController
   private
 
   def learning_params
-    params.require(:learning).permit(:title, :category_id, :comment,
+    params.require(:learning).permit(:title, :category_id, :schedule_at, :comment,
       questions_attributes: [:id, :question, :is_answer_1, :content_1, :is_answer_2, :content_2, :description, :learning_id, :_destroy]
     ).merge(user_id: current_user.id)
   end

@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 2022_09_15_011234) do
   create_table "learnings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", null: false
     t.integer "category_id", null: false
+    t.datetime "schedule_at", null: false
     t.text "comment", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
