@@ -10,16 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_15_011251) do
-
-  create_table "choices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "content", null: false
-    t.boolean "is_answer", default: false, null: false
-    t.bigint "question_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["question_id"], name: "index_choices_on_question_id"
-  end
+ActiveRecord::Schema.define(version: 2022_09_15_011234) do
 
   create_table "learnings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", null: false
@@ -33,6 +24,10 @@ ActiveRecord::Schema.define(version: 2022_09_15_011251) do
 
   create_table "questions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "question", null: false
+    t.boolean "is_answer_1", default: false, null: false
+    t.string "content_1", null: false
+    t.boolean "is_answer_2", default: false, null: false
+    t.string "content_2", null: false
     t.text "description"
     t.bigint "learning_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -59,7 +54,6 @@ ActiveRecord::Schema.define(version: 2022_09_15_011251) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "choices", "questions"
   add_foreign_key "learnings", "users"
   add_foreign_key "questions", "learnings"
 end

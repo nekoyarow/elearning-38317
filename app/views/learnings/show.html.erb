@@ -1,0 +1,41 @@
+<%= render "shared/header" %>
+
+<%= link_to '編集', edit_learning_path(@learning.id) %>
+<%= link_to '削除', learning_path(@learning.id), method: :delete, data: {confirm: "削除しますか？"} %>
+
+<div>【タイトル】</div>
+<div>
+  <%= @learning.title %>
+</div>
+
+<div>【カテゴリー】</div>
+<div>
+  <%= @learning.category.name %>
+</div>
+
+<div>【説明・コメント】</div>
+<div>
+  <%= @learning.comment %>
+</div>
+
+<div>
+  <% @questions.each do |qu| %>
+    <div>【問題】</div>
+    <div>
+      <%= qu.question %>
+    </div>
+    <div>【選択肢】</div>
+    <div>
+      <%= qu.content_1 %>（<%= qu.is_answer_1 %>）
+    </div>
+    <div>
+      <%= qu.content_2 %>（<%= qu.is_answer_2 %>）
+    </div>
+    <div>【解説】</div>
+    <div>
+      <%= qu.description %>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to '一覧にもどる', root_path %>

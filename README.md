@@ -49,20 +49,15 @@
 | Column         | Type       | Options                        | 
 | -------------- | ---------- | ------------------------------ | 
 | question       | text       | null: false                    | 
+| is_answer_1    | boolean    | null: false, default: false    | 
+| content_1      | string     | null: false                    | 
+| is_answer_2    | boolean    | null: false, default: false    | 
+| content_2      | string     | null: false                    | 
 | description    | text       |                                | 
 | learning       | references | foreign_key: true, null: false | 
 
 ### Association
 - belongs_to :learning
-- has_many :choices
 
 
-## choicesテーブル
-| Column      | Type       | Options                        | 
-| ----------- | ---------- | ------------------------------ | 
-| content     | string     | null: false                    | 
-| is_answer   | boolean    | null: false, default: false    | 
-| question    | references | foreign_key: true, null: false | 
-
-### Association
-- belongs_to :question
+## playersテーブル
