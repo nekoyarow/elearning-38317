@@ -1,0 +1,32 @@
+<div class="nested-fields">
+  <div class="field">
+    <%= f.label :question, "問題" %><br />
+    <%= f.text_area :question %>
+  </div>
+
+  <div class="field">
+    <%= f.text_field :content_1, placeholder:'選択肢1' %>
+  </div>
+
+  <div>
+    <%= f.check_box :is_answer_1 %>
+    <%= f.label :is_answer_1, '答えの方をチェック', value: true %>
+  </div>
+
+<div class="field">
+    <%= f.text_field :content_2, placeholder:'選択肢2' %>
+  </div>
+
+  <div>
+    <%= f.check_box :is_answer_2 %>
+    <%= f.label :is_answer_2, '答えの方をチェック', value: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description, "説明" %><br />
+    <%= f.text_area :description %>
+  </div>
+
+  <!-- 削除ボタン -->
+  <%= link_to_remove_association "問題を削除", f %>
+</div>

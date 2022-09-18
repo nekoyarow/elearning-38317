@@ -10,7 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_14_174824) do
+ActiveRecord::Schema.define(version: 2022_09_15_011234) do
+
+  create_table "learnings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title", null: false
+    t.integer "category_id", null: false
+    t.text "comment", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_learnings_on_user_id"
+  end
+
+  create_table "questions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "question", null: false
+    t.boolean "is_answer_1", default: false, null: false
+    t.string "content_1", null: false
+    t.boolean "is_answer_2", default: false, null: false
+    t.string "content_2", null: false
+    t.text "description"
+    t.bigint "learning_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["learning_id"], name: "index_questions_on_learning_id"
+  end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -31,4 +54,6 @@ ActiveRecord::Schema.define(version: 2022_09_14_174824) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "learnings", "users"
+  add_foreign_key "questions", "learnings"
 end

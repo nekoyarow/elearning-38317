@@ -1,0 +1,42 @@
+<%= render "shared/header" %>
+
+<h1> 問題編集ページ </h1>
+
+<%= form_with model: @learning, local: true do |f| %>
+
+<%= render 'shared/error_messages', model: f.object %>
+
+  <div class="field">
+    <%= f.label :title, "タイトル" %><br />
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="dropdown">
+    <%= f.label :category_id, "カテゴリー" %><br />
+    <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-default"})  %>
+  </div>
+
+  <div class="field">
+    <%= f.label :comment, "説明・コメント" %><br />
+    <%= f.text_area :comment %>
+  </div>
+
+  <%= f.fields_for :questions do |qu| %>
+    <%= render "question_fields", f: qu %>
+  <% end %>
+
+  <!-- １）追加ボタンの記述 -->
+  <%= link_to_add_association "問題を追加", f, :questions,
+  data: {
+        association_insertion_node: '#detail-association-insertion-point',
+        association_insertion_method: 'after'
+        }
+  %>
+
+  <div id="detail-association-insertion-point"></div>
+
+  <div class="actions">
+    <%= f.submit 'send' %>
+  </div>
+
+<% end %>
