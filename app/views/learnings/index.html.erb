@@ -18,7 +18,7 @@
   <tbody>
   <% @learnings.each do |learning| %>
     <tr>
-      <td><%= learning.schedule_at %></td>
+      <td><%= learning.schedule_at.to_s(:datetime_jp) %></td>
       <th scope="row"><%= link_to learning.title, learning_path(learning.id) %></th>
       <td><%= learning.category.name %></td>
       <td><%= learning.user.family_name %></td>
