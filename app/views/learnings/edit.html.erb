@@ -16,6 +16,10 @@
     <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-default"})  %>
   </div>
 
+  <div>
+    <%= f.label :schedule_at, "配信日時" %><br />
+    <%= f.datetime_select :schedule_at, {} %>
+  </div>
   <div class="field">
     <%= f.label :comment, "説明・コメント" %><br />
     <%= f.text_area :comment %>

@@ -5,6 +5,7 @@
 <table class="table table-striped table-hover">
   <thead>
     <tr class="table-dark">
+      <th scope="col">配信日</th>
       <th scope="col">タイトル</th>
       <th scope="col">カテゴリー</th>
       <th scope="col">作成者</th>
@@ -17,6 +18,7 @@
   <tbody>
   <% @learnings.each do |learning| %>
     <tr>
+      <td><%= learning.schedule_at %></td>
       <th scope="row"><%= link_to learning.title, learning_path(learning.id) %></th>
       <td><%= learning.category.name %></td>
       <td><%= learning.user.family_name %></td>

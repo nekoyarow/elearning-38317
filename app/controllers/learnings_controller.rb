@@ -3,7 +3,7 @@ class LearningsController < ApplicationController
   before_action :set_learning, only:[:show, :edit, :update, :destroy]
 
   def index
-    @learnings = Learning.order(created_at: 'DESC')
+    @learnings = Learning.order(schedule_at: 'DESC')
   end
 
   def new
