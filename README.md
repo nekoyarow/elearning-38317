@@ -16,6 +16,7 @@
 
 ### Association
 - has_many :learnings
+- has_many :players
 - belongs_to :company（アクティブハッシュ）
 - belongs_to :division（アクティブハッシュ）
 - belongs_to :station（アクティブハッシュ）
@@ -38,6 +39,7 @@
 ### Association
 - belongs_to :user
 - has_many :questions
+- has_many :players
 - belongs_to :category（アクティブハッシュ）
 
 ### ActiveHash
@@ -61,3 +63,24 @@
 
 
 ## playersテーブル
+
+| Column   | Type       | Options                        | 
+| -------- | ---------- | ------------------------------ | 
+| user     | references | foreign_key: true, null: false | 
+| learning | references | foreign_key: true, null: false | 
+
+### Association
+- belongs_to :user
+- belongs_to :learning
+- has_many :answers
+
+
+## answersテーブル
+
+| Column | Type       | Options                        | 
+| ------ | ---------- | ------------------------------ | 
+| answer | boolean    | null: false, default: false    | 
+| player | references | foreign_key: true, null: false | 
+
+### Association
+- belongs_to :player
