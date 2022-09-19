@@ -1,6 +1,7 @@
 class Learning < ApplicationRecord
   belongs_to :user
   has_many :questions, inverse_of: :learning, dependent: :destroy
+  has_many :plays
   accepts_nested_attributes_for :questions, allow_destroy: true
 
   validates :title, presence: true

@@ -1,0 +1,41 @@
+<%= render "shared/header" %>
+
+<h1>回答画面</h1>
+
+<div>【タイトル】</div>
+<div>
+  <%= @learning.title %>
+</div>
+
+<div>【カテゴリー】</div>
+<div>
+  <%= @learning.category.name %>
+</div>
+
+<div>【説明・コメント】</div>
+<div>
+  <%= @learning.comment %>
+</div>
+
+<div>
+  <% @questions.each do |qu| %>
+    <div>【問題】</div>
+    <%= form_with model: @play, url: learning_plays_path, local: true do |f| %>
+      <%= f.fields_for :answers do |a| %>
+        <div>
+          <%= qu.question %>
+        </div>
+        <div>
+          <label><%= a.radio_button :answer, "true" %><%= qu.content_1 %></label>
+        </div>
+        <div>
+          <label><%= a.radio_button :answer, "true" %><%= qu.content_2 %></label>
+        </div>
+      <% end %>
+      <%= f.submit "答え合わせ" %>
+    <% end %>
+  <% end %>
+</div>
+
+
+<%= link_to '一覧にもどる', root_path %>
