@@ -2,6 +2,6 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'learnings#index'
   resources :learnings do
-    resources :plays, only: [:index, :create]
+    resources :plays, only: [:index, :create, :show]
   end
 end

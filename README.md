@@ -77,10 +77,11 @@
 
 ## answersテーブル
 
-| Column | Type       | Options                        | 
-| ------ | ---------- | ------------------------------ | 
-| answer | boolean    | null: false, default: false    | 
-| play   | references | foreign_key: true, null: false | 
+| Column     | Type       | Options                        | 
+| ---------- | ---------- | ------------------------------ | 
+| answer     | boolean    | null: false, default: false    | 
+| play       | references | foreign_key: true, null: false | 
 
 ### Association
 - belongs_to :play
+

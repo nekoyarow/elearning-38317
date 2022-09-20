@@ -1,5 +1,7 @@
 <%= render "shared/header" %>
 
+<%= flash[:notice] %>
+
 <h1>問題一覧</h1>
 
 <table class="table table-striped table-hover">
@@ -25,7 +27,11 @@
       <td><%= link_to '詳細', learning_path(learning.id) %>
       <td><%= link_to '編集', edit_learning_path(learning.id) %></td>
       <td><%= link_to '削除', learning_path(learning.id), method: :delete, data: {confirm: "削除しますか？"} %></td>
-      <td><%= link_to '回答する', learning_plays_path(learning.id) %></td>
+      <% if learning.played?(current_user) %>
+        <td>回答済み</td>
+      <% else%>
+        <td><%= link_to '回答する', learning_plays_path(learning.id) %></td>
+      <% end %>
     </tr>
   <% end %>
   </tbody>

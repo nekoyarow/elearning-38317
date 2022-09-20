@@ -3,7 +3,7 @@ class LearningsController < ApplicationController
   before_action :set_learning, only:[:show, :edit, :update, :destroy]
 
   def index
-    @learnings = Learning.order(schedule_at: 'ASC')
+    @learnings = Learning.order(schedule_at: 'ASC').includes(:plays)
   end
 
   def new
@@ -14,7 +14,7 @@ class LearningsController < ApplicationController
   def create
     @learning = Learning.new(learning_params)
     if @learning.save
-      redirect_to learning_path(@learning.id)
+      redirect_to learning_path(@learning.id), notice: "問題を登録しました。"
     else
       render :new
     end
@@ -28,7 +28,7 @@ class LearningsController < ApplicationController
 
   def update
     if @learning.update(learning_params)
-      redirect_to learning_path(@learning.id), notice: "問題を登録しました。"
+      redirect_to learning_path(@learning.id), notice: "問題を編集しました。"
     else
       render :edit
     end

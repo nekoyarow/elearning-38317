@@ -1,5 +1,5 @@
 class PlaysController < ApplicationController
-  before_action :set_learning, only: [:index,:create]
+  before_action :set_learning, only: [:index, :create]
 
   def index
     @play = Play.new
@@ -7,12 +7,22 @@ class PlaysController < ApplicationController
   end
 
   def create
-    @play = Play.new(play_params)
-    if @play.save
-      redirect_to root_path
+    @play = current_user.plays.new(play_params)
+    play_count = Play.where(learning_id: params[:learning_id]).where(user_id: current_user.id).count
+    if @play.valid?
+      if play_count < 1
+        @play.save
+        redirect_to root_path, notice: "回答を保存しました"
+      else
+        redirect_to root_path, notice: "回答の送信は一人一回までです"
+      end
     else
-      render :new
+        render :index
     end
+  end
+
+  def show
+    
   end
 
   private

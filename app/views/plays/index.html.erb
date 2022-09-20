@@ -18,13 +18,13 @@
 </div>
 
 <div>
+<%= form_with model:[@learning,@play], url: learning_plays_path, local: true do |f| %>
   <% @questions.each do |qu| %>
     <div>【問題】</div>
-    <%= form_with model: @play, url: learning_plays_path, local: true do |f| %>
-      <%= f.fields_for :answers do |a| %>
         <div>
           <%= qu.question %>
         </div>
+        <%= f.fields_for :answers do |a| %>
         <div>
           <label><%= a.radio_button :answer, "true" %><%= qu.content_1 %></label>
         </div>
@@ -32,9 +32,9 @@
           <label><%= a.radio_button :answer, "true" %><%= qu.content_2 %></label>
         </div>
       <% end %>
-      <%= f.submit "答え合わせ" %>
     <% end %>
-  <% end %>
+  <%= f.submit "答え合わせ" %>
+<% end %>
 </div>
 
 

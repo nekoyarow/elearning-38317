@@ -1,7 +1,7 @@
 class Learning < ApplicationRecord
   belongs_to :user
   has_many :questions, inverse_of: :learning, dependent: :destroy
-  has_many :plays
+  has_many :plays, dependent: :destroy
   accepts_nested_attributes_for :questions, allow_destroy: true
 
   validates :title, presence: true
@@ -11,4 +11,7 @@ class Learning < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
 
+  def played?(user)
+    plays.where(user_id: user.id).exists?
+  end
 end
